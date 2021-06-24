@@ -12,10 +12,21 @@ class BaseModel:
     created_at = None
     updated_at = None
 
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
         ''' Class constructor '''
-        self.id = str(uuid4())
-        self.created_at = datetime.now()
+        if (len(kwargs) == 0):
+            self.id = str(uuid4())
+            self.created_at = datetime.now()
+            return
+
+        for key in kwargs:
+            if key == "__class__":
+                continue
+            print("{} - {}".format(key, kwargs[key]))
+            if key == "created_at" or key == "updated_at":
+                self.__dict__[key] = datetime.strptime(kwargs[key], "%Y-%m-%dT%H:%M:%S.%f")
+                continue
+            self.__dict__[key] = kwargs[key]
 
     def __str__(self):
         ''' Str representation of the instance '''
