@@ -4,6 +4,7 @@
 
 from uuid import uuid4
 from datetime import datetime
+from . import *
 
 
 class BaseModel:
@@ -17,6 +18,7 @@ class BaseModel:
         if (len(kwargs) == 0):
             self.id = str(uuid4())
             self.created_at = datetime.now()
+            storage.new(self)
             return
 
         for key in kwargs:
@@ -35,6 +37,7 @@ class BaseModel:
 
     def save(self):
         ''' Datetime last modification of object '''
+        storage.save()
         self.updated_at = datetime.now()
 
     def to_dict(self):
