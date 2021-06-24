@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-''' Executable command '''
+''' Module with the base_model class '''
 
 
 from uuid import uuid4
