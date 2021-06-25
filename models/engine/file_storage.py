@@ -4,12 +4,13 @@
 
 import json
 from os import path
+from models.base_model import BaseModel
 
 
 class FileStorage:
     ''' Class for saving objects when the programm closes '''
 
-    __file_path = "file.json"
+    __file_path = "Cockvein.json"
     __objects = {}
 
     def all(self):
@@ -18,21 +19,24 @@ class FileStorage:
     
     def new(self, obj):
         ''' Sets a new obj into __objects '''
-        self.__objects[obj.id] = obj
+        self.__objects[obj.to_dict()['__class__'] + "." + obj.id] = obj
 
     def save(self):
         ''' Saves to the json file '''
-        print("=========================")
-        print(self.__objects)
-        print("=========================")
-        
+        mega_dict = {}
+
+        for key in self.__objects:
+            mega_dict[key] = self.__objects[key].to_dict()
+
         with open(self.__file_path, 'w') as file:
-            file.write(json.dumps(self.__objects))
+            json.dump(mega_dict, file)
 
     def reload(self):
         ''' loads a json file to __objects '''
         if (not path.isfile(self.__file_path)):
             return
-        # TODO: this doesn't work
         with open(self.__file_path, 'r') as file:
             self.__objects = dict(json.loads(file.read()))
+            for key in self.__objects:
+               self.__objects[key] = BaseModel(**self.__objects[key])
+            print("me gusta el navo" + str(self.__objects))
