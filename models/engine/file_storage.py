@@ -10,7 +10,7 @@ from models.base_model import BaseModel
 class FileStorage:
     ''' Class for saving objects when the programm closes '''
 
-    __file_path = "Cockvein.json"
+    __file_path = "File.json"
     __objects = {}
 
     def all(self):
