@@ -3,7 +3,9 @@
 
 
 import cmd
+import json
 from models.base_model import BaseModel
+from models import storage
 
 class HBNBCommand(cmd.Cmd):
     ''' Hbnb class command '''
@@ -18,35 +20,79 @@ class HBNBCommand(cmd.Cmd):
         elif (args == "BaseModel"):
             new_instance = BaseModel()
             new_instance.save()
-            print(new_instance.id)
 
         else:
             print("** class doesn't exist **")
-    
+
     def do_show(self, args):
-        ''' Shows the string representatn '''
-        if (len(args) == 0):
-            print("** class name missing **")
+        ''' Shows the string representation '''
+        obj = self.basic_checks(args)
+        if (obj == False):
             return
-        
-        prompt = args.split(' ')
 
-        
+        print(obj['obj'])
 
+    # Dudoso
     def do_destroy(self, args):
         ''' Deletes an instance based on the class name and id '''
+        obj = self.basic_checks(args)
+
+        if (obj == False):
+            return
+
+        final_dict = {}
+        storage_obj = storage.all()
+        del storage_obj[obj['args'][0] + '.' + obj['id']]
+        for key in storage_obj:
+            final_dict[key] = storage_obj[key].to_dict()
+        with open("File.json", 'w') as f:
+            json.dump(final_dict, f)
+        storage.reload()
+
+
+    
+    def do_update(self, args):
+        ''' Updates an object '''
+        id = self.basic_checks(args)
+        if (id == False):
+            return
+
+        # actualiza
+        
+            
+# 8=========> Our Tools <=========8
+    
+    def basic_checks(self, args):
+        ''' Standarized error checks '''
         if (len(args) == 0):
             print("** class name missing **")
-            return
+            return False
         parts = args.split(' ')
         if (len(parts) == 1):
-            print("awa")
-        if (len(parts) == 2):
-            print("ewe")
-        return
-        if (parts[1] != "BaseModel"):
+            print("** instance id missing **")
+            return False
+        elif (len(parts) == 2 and parts[0] != "BaseModel"):
             print("** class doesn't exist **")
-        elif ():
+            return False
+        
+        objs = storage.all()
+
+        for key in objs:
+            id = key.split('.')[1]
+            if (id == parts[1]):
+                return ({
+                    'id': id,
+                    'args': parts,
+                    'obj': objs[key]
+                })
+
+        print("** no instance found **")
+        return False
+
+# 8===============================8
+    
+    def chequeo(self, args):
+        ''' does the '''
 
     def do_quit(self, args):
         ''' Quit command '''

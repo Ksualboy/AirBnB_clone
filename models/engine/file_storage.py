@@ -19,7 +19,7 @@ class FileStorage:
     
     def new(self, obj):
         ''' Sets a new obj into __objects '''
-        self.__objects[obj.to_dict()['__class__'] + "." + obj.id] = obj
+        self.__objects[obj.__class__.__name__ + "." + obj.id] = obj
 
     def save(self):
         ''' Saves to the json file '''
@@ -36,7 +36,7 @@ class FileStorage:
         if (not path.isfile(self.__file_path)):
             return
         with open(self.__file_path, 'r') as file:
-            self.__objects = dict(json.loads(file.read()))
-            for key in self.__objects:
-               self.__objects[key] = BaseModel(**self.__objects[key])
-            print("me gusta el navo" + str(self.__objects))
+            aux_dict = dict(json.loads(file.read()))
+            self.__objects.clear()
+            for key in aux_dict:
+                self.__objects[key] = BaseModel(**aux_dict[key])
