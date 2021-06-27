@@ -16,7 +16,7 @@ class FileStorage:
     def all(self):
         ''' Returns the dictionary __objects '''
         return self.__objects
-    
+
     def new(self, obj):
         ''' Sets a new obj into __objects '''
         self.__objects[obj.__class__.__name__ + "." + obj.id] = obj
