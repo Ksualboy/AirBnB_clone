@@ -6,6 +6,7 @@ sys.path.append(parentdir)
 from models import storage
 from models.base_model import BaseModel
 from models.user import User
+from models.city import City
 
 all_objs = storage.all()
 print("-- Reloaded objects --")
@@ -30,3 +31,7 @@ my_user2.password = "root"
 my_user2.save()
 print(my_user2)
 
+print("-- New City --")
+city = City()
+city.name = "Dounside"
+print(city)

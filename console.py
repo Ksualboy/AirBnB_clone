@@ -7,6 +7,11 @@ import json
 import ast
 from models.base_model import BaseModel
 from models.user import User
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
 from models import storage
 
 class HBNBCommand(cmd.Cmd):
@@ -16,6 +21,11 @@ class HBNBCommand(cmd.Cmd):
     __classes = {
         'BaseModel': BaseModel,
         'User': User,
+        'State': State,
+        'City': City,
+        'Amenity': Amenity,
+        'Place': Place,
+        'Review': Review,
     }
 
     def do_create(self, args):
