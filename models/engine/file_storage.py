@@ -19,14 +19,21 @@ class FileStorage:
 
     def new(self, obj):
         ''' Sets a new obj into __objects '''
-        self.__objects[obj.__class__.__name__ + "." + obj.id] = obj
+        if (type(obj) == dict and "set_null" in obj):
+            ''' Handle the 'Destroy' case '''
+            self.__objects[obj['id']] = obj['set_null']
+        else:
+            self.__objects[obj.__class__.__name__ + "." + obj.id] = obj
 
     def save(self):
         ''' Saves to the json file '''
         mega_dict = {}
 
         for key in self.__objects:
-            mega_dict[key] = self.__objects[key].to_dict()
+            if (self.__objects[key] is not None):
+                mega_dict[key] = self.__objects[key].to_dict()
+            else:
+                print(key)
 
         with open(self.__file_path, 'w') as file:
             json.dump(mega_dict, file)

@@ -69,9 +69,13 @@ class HBNBCommand(cmd.Cmd):
         if (obj == False):
             return
 
-        storage_obj = storage.all()
-        del storage_obj[obj['args'][0] + '.' + obj['id']]
-        self.update_json(storage_obj)
+        target = {
+            'id': obj['class_obj'].__name__ + '.' + obj['id'],
+            'set_null': None
+        }
+        storage.new(target)
+        storage.save()
+        storage.reload()
 
 
     def do_update(self, args):
