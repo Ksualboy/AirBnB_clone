@@ -11,6 +11,9 @@ class HBNBCommand(cmd.Cmd):
     ''' Hbnb class command '''
 
     prompt = "(hbnb) "
+    __classes = {
+        'BaseModel': BaseModel,
+    }
 
     def do_create(self, args):
         ''' Creates an new instance of a class '''
@@ -20,6 +23,7 @@ class HBNBCommand(cmd.Cmd):
         elif (args == "BaseModel"):
             new_instance = BaseModel()
             new_instance.save()
+            print(new_instance.id)
 
         else:
             print("** class doesn't exist **")
@@ -31,8 +35,20 @@ class HBNBCommand(cmd.Cmd):
             return
 
         print(obj['obj'])
+    
+    def do_all(self, args):
+        ''' Prints all instances based or not on the class name '''
+        parts = args.split(' ')
+        if (parts[0] != "BaseModel"):
+            print("** class doesn't exist **")
+            return
+        my_list = []
+        objs = storage.all()
+        for key in objs:
+            my_list.append(str(objs[key]))
+        print(my_list)
+        
 
-    # Dudoso
     def do_destroy(self, args):
         ''' Deletes an instance based on the class name and id '''
         obj = self.basic_checks(args)
@@ -49,15 +65,14 @@ class HBNBCommand(cmd.Cmd):
             json.dump(final_dict, f)
         storage.reload()
 
-
     
     def do_update(self, args):
         ''' Updates an object '''
-        id = self.basic_checks(args)
-        if (id == False):
+        obj = self.basic_checks(args)
+        if (obj == False):
             return
 
-        # actualiza
+        # if (len(obj[args]))
         
             
 # 8=========> Our Tools <=========8
@@ -68,11 +83,11 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
             return False
         parts = args.split(' ')
-        if (len(parts) == 1):
-            print("** instance id missing **")
-            return False
-        elif (len(parts) == 2 and parts[0] != "BaseModel"):
+        if (parts[0] != "BaseModel"):
             print("** class doesn't exist **")
+            return False
+        elif (len(parts) == 1):
+            print("** instance id missing **")
             return False
         
         objs = storage.all()
@@ -87,6 +102,13 @@ class HBNBCommand(cmd.Cmd):
                 })
 
         print("** no instance found **")
+        return False
+    
+    def class_check(self, class_name):
+        for key, value in HBNBCommand.__class.items():
+            if (key == class_name):
+                return value
+        
         return False
 
 # 8===============================8
