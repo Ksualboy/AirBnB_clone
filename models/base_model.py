@@ -31,7 +31,8 @@ class BaseModel:
 
     def __str__(self):
         ''' Str representation of the instance '''
-        s = "[{}] ({}) {}".format(BaseModel.__name__, self.id, self.__dict__)
+        cls_name = self.__class__.__name__
+        s = "[{}] ({}) {}".format(cls_name, self.id, self.__dict__)
         return s
 
     def save(self):
