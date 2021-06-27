@@ -93,7 +93,9 @@ class HBNBCommand(cmd.Cmd):
             print("** value missing **")
             return
 
-        setattr(obj['obj'], obj['args'][2], obj['args'][3])
+        key = obj['args'][2]
+        val = self.type_check(obj['args'][3])
+        setattr(obj['obj'], key, val)
         storage.new(obj['obj'])
         storage.save()
 
@@ -137,6 +139,19 @@ class HBNBCommand(cmd.Cmd):
         if (class_name in self.__classes):
             return self.__classes[class_name]
         return False
+    
+    def type_check(self, str):
+        ''' Checks a variable type from a str '''
+        try:
+            return(int(str))
+        except:
+            try:
+                return(float(str))
+            except:
+                try:
+                    return(str(str))
+                except:
+                    return str
 
 # 8===============================8
 

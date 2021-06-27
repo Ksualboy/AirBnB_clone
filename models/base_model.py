@@ -43,7 +43,7 @@ class BaseModel:
     def to_dict(self):
         ''' Dictionari representation of the instance '''
         ret_dict = self.__dict__.copy()
-        ret_dict['__class__'] = BaseModel.__name__
+        ret_dict['__class__'] = self.__class__.__name__
         ret_dict['created_at'] = ret_dict['created_at'].isoformat()
         if ('updated_at' in ret_dict):
             ret_dict['updated_at'] = ret_dict['updated_at'].isoformat()
