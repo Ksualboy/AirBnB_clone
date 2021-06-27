@@ -136,16 +136,6 @@ class HBNBCommand(cmd.Cmd):
             return self.__classes[class_name]
         return False
 
-    # DUDOSO si esto es valido xd
-    def update_json(self, obj):
-        ''' Overwrites the JSON file '''
-        final_dict = {}
-        for key in obj:
-            final_dict[key] = obj[key].to_dict()
-        with open("File.json", 'w') as f:
-            json.dump(final_dict, f)
-        storage.reload()
-
 # 8===============================8
 
     def chequeo(self, args):

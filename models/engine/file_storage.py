@@ -32,8 +32,6 @@ class FileStorage:
         for key in self.__objects:
             if (self.__objects[key] is not None):
                 mega_dict[key] = self.__objects[key].to_dict()
-            else:
-                print(key)
 
         with open(self.__file_path, 'w') as file:
             json.dump(mega_dict, file)
