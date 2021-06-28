@@ -2,11 +2,11 @@
 
 # AirBnB Clone - The Console
 
-[Description]
+The beginning of the web application <b><i>AirBnB</i></b> requieres a console to control it's objects. So here there is our command interpreter for that huge proyect.
 
 # The Command interpreter
 
-[Description]
+In simple words, the command interpreter allows to interact between the AirBnb requiered objects using a text based command interpretation interface. Thar means, every opperation related with objects and classess will be managed by this interpreter by text instructions.
 
 ## <b> How to bring life to our interpreter </b>
 
