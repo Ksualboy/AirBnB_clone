@@ -14,6 +14,7 @@ from models.place import Place
 from models.review import Review
 from models import storage
 
+
 class HBNBCommand(cmd.Cmd):
     ''' Hbnb class command '''
 
@@ -35,7 +36,7 @@ class HBNBCommand(cmd.Cmd):
             return
 
         class_obj = self.class_check(args)
-        if (class_obj == False):
+        if (class_obj is False):
             print("** class doesn't exist **")
             return
 
@@ -46,7 +47,7 @@ class HBNBCommand(cmd.Cmd):
     def do_show(self, args):
         ''' Shows the string representation '''
         obj = self.basic_checks(args)
-        if (obj == False):
+        if (obj is False):
             return
 
         print(obj['obj'])
@@ -64,7 +65,7 @@ class HBNBCommand(cmd.Cmd):
 
         class_name_arg = args.split(' ')[0]
         class_obj = self.class_check(class_name_arg)
-        if (class_obj == False):
+        if (class_obj is False):
             print("** class doesn't exist **")
             return
 
@@ -78,7 +79,7 @@ class HBNBCommand(cmd.Cmd):
         ''' Deletes an instance based on the class name and id '''
         obj = self.basic_checks(args)
 
-        if (obj == False):
+        if (obj is False):
             return
 
         target = {
@@ -89,11 +90,10 @@ class HBNBCommand(cmd.Cmd):
         storage.save()
         storage.reload()
 
-
     def do_update(self, args):
         ''' Updates an object '''
         obj = self.basic_checks(args)
-        if (obj == False):
+        if (obj is False):
             return
 
         if (len(obj['args']) == 2):
@@ -121,7 +121,7 @@ class HBNBCommand(cmd.Cmd):
         parts = args.split(' ')
 
         class_obj = self.class_check(parts[0])
-        if (class_obj == False):
+        if (class_obj is False):
             print("** class doesn't exist **")
             return False
 
@@ -149,7 +149,7 @@ class HBNBCommand(cmd.Cmd):
         if (class_name in self.__classes):
             return self.__classes[class_name]
         return False
-    
+
     def type_check(self, str):
         ''' Checks a variable type from a str '''
         try:
@@ -175,15 +175,15 @@ class HBNBCommand(cmd.Cmd):
     def help_quit(self):
         ''' Help for quit '''
         print("Quit command to exit the program\n")
-    
+
     def do_EOF(self, args):
         ''' Exit command '''
         exit()
-    
+
     def help_EOF(self):
         ''' Help for EOF '''
         print("EOF command to exit the program\n")
-    
+
     def emptyline(self):
         ''' Empty line does nothing '''
         pass

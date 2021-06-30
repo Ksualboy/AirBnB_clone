@@ -25,7 +25,9 @@ class BaseModel:
             if key == "__class__":
                 continue
             if key == "created_at" or key == "updated_at":
-                self.__dict__[key] = datetime.strptime(kwargs[key], "%Y-%m-%dT%H:%M:%S.%f")
+                aux = kwargs[key]
+                form = "%Y-%m-%dT%H:%M:%S.%f"
+                self.__dict__[key] = datetime.strptime(aux, form)
                 continue
             self.__dict__[key] = kwargs[key]
 
