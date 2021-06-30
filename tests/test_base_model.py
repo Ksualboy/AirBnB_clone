@@ -19,6 +19,12 @@ class TestBaseModel(unittest.TestCase):
         self.assertTrue(isinstance(t3, BaseModel))
         self.assertTrue(type(t3), BaseModel)
     
+    def test_ids(self):
+        '''Test if id is unique'''
+        random = BaseModel()
+        other_random = BaseModel()
+        self.assertNotEqual(random.id, other_random.id)
+
     def test_save1(self):
         '''Testing save method'''
         dev = BaseModel()
