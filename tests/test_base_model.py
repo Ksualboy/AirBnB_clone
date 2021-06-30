@@ -6,7 +6,7 @@ import unittest
 from models.base_model import BaseModel
 
 
-class BaseModelTest(unittest.TestCase):
+class TestBaseModel(unittest.TestCase):
     '''Test class for base model'''
 
     def test_intantiation(self):
