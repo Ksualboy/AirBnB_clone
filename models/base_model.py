@@ -43,7 +43,7 @@ class BaseModel:
         self.updated_at = datetime.now()
 
     def to_dict(self):
-        ''' Dictionari representation of the instance '''
+        ''' Dictionary representation of the instance '''
         ret_dict = self.__dict__.copy()
         ret_dict['__class__'] = self.__class__.__name__
         ret_dict['created_at'] = ret_dict['created_at'].isoformat()
