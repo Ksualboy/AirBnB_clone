@@ -188,8 +188,6 @@ class HBNBCommand(cmd.Cmd):
         ''' Empty line does nothing '''
         pass
 
-    def do_xd(self, args):
-        print("xd")
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
