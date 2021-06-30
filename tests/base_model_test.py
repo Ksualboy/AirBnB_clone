@@ -61,3 +61,6 @@ class BaseModelTest(unittest.TestCase):
         self.assertEqual(vene_dict['hungry'], vene.hungry)
         self.assertEqual(vene_dict['__class__'], vene.__class__.__name__)
         self.assertTrue(isinstance(vene_dict, dict))
+
+if (__file__ == "__main__"):
+    unittest.main()
