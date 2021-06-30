@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-'''Test for State'''
+'''Test for Amenity'''
 
 
 import unittest
