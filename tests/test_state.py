@@ -3,6 +3,7 @@
 
 
 import unittest
+import pep8
 from models.base_model import BaseModel
 from models.engine.file_storage import FileStorage
 from models.state import State
@@ -29,6 +30,11 @@ class TestState(unittest.TestCase):
         self.assertTrue(isinstance(t5, State))
         self.assertTrue(type(t5), State)
     
+    def test_pep8(self):
+        '''Testing pep8'''
+        pep_res = pep8.StyleGuide().check_files(['models/state.py'])
+        self.assertEqual(pep_res.total_errors, 0)
+
     def test_sub_classes(self):
         '''Check if this class inherits from BaseModel'''
         self.assertTrue(issubclass(State, BaseModel))

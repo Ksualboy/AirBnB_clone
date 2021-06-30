@@ -3,6 +3,7 @@
 
 
 import unittest
+import pep8
 from models.base_model import BaseModel
 
 
@@ -19,6 +20,11 @@ class TestBaseModel(unittest.TestCase):
         self.assertTrue(isinstance(t3, BaseModel))
         self.assertTrue(type(t3), BaseModel)
     
+    def test_pep8(self):
+        '''Testing pep8'''
+        pep_res = pep8.StyleGuide().check_files(['models/base_model.py'])
+        self.assertEqual(pep_res.total_errors, 0)
+
     def test_ids(self):
         '''Test if id is unique'''
         random = BaseModel()
