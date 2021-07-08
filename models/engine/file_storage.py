@@ -5,6 +5,12 @@
 import json
 from os import path
 from models.base_model import BaseModel
+from models.user import User
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
 
 
 class FileStorage:
@@ -12,6 +18,15 @@ class FileStorage:
 
     __file_path = "File.json"
     __objects = {}
+    __classes = {
+        'BaseModel': BaseModel,
+        'User': User,
+        'State': State,
+        'City': City,
+        'Amenity': Amenity,
+        'Place': Place,
+        'Review': Review,
+    }
 
     def all(self):
         ''' Returns the dictionary __objects '''
@@ -44,4 +59,6 @@ class FileStorage:
             aux_dict = dict(json.loads(file.read()))
             self.__objects.clear()
             for key in aux_dict:
-                self.__objects[key] = BaseModel(**aux_dict[key])
+                inst = aux_dict[key]['__class__']
+                if (inst in self.__classes):
+                    self.__objects[key] = self.__classes[inst](**aux_dict[key])
