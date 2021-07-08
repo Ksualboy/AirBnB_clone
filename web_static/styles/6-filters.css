@@ -36,6 +36,7 @@ section.filters div {
 }
 
 section.filters .locations {
+    position: relative;
     border-right: solid 1px #DDDDDD;
 }
 
@@ -48,4 +49,22 @@ section.filters div h4 {
     margin: 0 0;
     font-weight: 400;
     font-size: 14px;
+}
+
+div ul.popover {
+    /* DUDOSO */
+    position: absolute;
+    left: 0;
+    top: 100%;
+    margin: 0 0 30px 0;
+    padding: 0;
+    background: #FAFAFA;
+    width: 100%;
+    border: solid 1px #DDDDDD;
+    border-radius: 4px;
+}
+
+/* DUDOSO */
+div ul.popover > *{
+    margin-left: 30px;
 }
