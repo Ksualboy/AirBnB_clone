@@ -1,5 +1,6 @@
 header {
     display: flex;
+    position: relative;
     align-items: center;
     background: white;
     height: 70px;
@@ -8,6 +9,5 @@ header {
 }
 
 header img.logo_header {
-    display: flex;
     margin-left: 20px;
 }
