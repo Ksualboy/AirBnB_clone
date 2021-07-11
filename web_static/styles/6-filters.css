@@ -27,6 +27,7 @@ section.filters button:hover {
 section.filters div {
     width: 25%;
     height: 100%;
+    z-index: 5;
 }
 
 section.filters .locations {
@@ -44,7 +45,8 @@ section.filters div h4 {
     font-size: 14px;
 }
 
-div ul.popover {
+ul.popover {
+    visibility: hidden;
     margin: 0 0 0 0;
     margin-left: -1px;
     padding: 33px 0 33px 0;
@@ -53,15 +55,25 @@ div ul.popover {
     border: solid 1px #DDDDDD;
     border-radius: 4px;
     list-style-type: none;
+    z-index: 5;
+}
+
+div.locations ul.popover {
+    padding-top: 20px;
 }
 
 div ul.popover li{
     margin-left: 50px;
-    margin-bottom: 5px;
+    margin-bottom: 7px;
+    margin-top: 8px;
 }
 
 div ul.popover li h2{
     margin-left: -20px;
     margin-top: 20px;
-    margin-bottom: 7px;
+    margin-bottom: -5px;
+}
+
+section.filters div:hover .popover {
+    visibility: visible;
 }

@@ -2,10 +2,11 @@ footer {
     display: flex;
     justify-content: center;
     align-items: center;
-    position: absolute;
+    position: fixed;
     background: white;
     height: 60px;
     width: 100%;
     bottom: 0;
     border-top: solid 1px #CCCCCC;
+    margin-top: 30px;
 }
